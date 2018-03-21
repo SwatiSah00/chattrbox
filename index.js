@@ -2,7 +2,7 @@ var http = require('http');
 var fs = require('fs');
 var Mime = require('mime');
 var extract = require('./extract');
-var wss = require('./websockets-server');
+var ws = require('./websockets-server');
 var handleError = function(err, res) {
   fs.readFile('app/error.html', function(err, data) {
     res.end(data);
@@ -19,19 +19,10 @@ var server = http.createServer(function(req, res) {
       return;
     } else {
       //res.setHeader('Content-Type', 'text/html');
-      const contentType = Mime.getType(filePath);
-      res.writeHead(200, {"Content-Type": contentType});
+      var contentType = Mime.getType(filePath);
+      res.writeHead(200, {'Content-Type': contentType});
       res.end(data);
     }
   });
 });
-/*var server = http.createServer(function(req, res) {
-  console.log('Responding to a request.');
-  fs.readFile('app/test.txt', function(err, data) {
-    const contentType = Mime.getType('app/test.txt');
-    //console.log(Mime.getType('app/test.txt'));
-    res.writeHead(200, {"Content-Type": contentType});
-    res.end(data);
-  });
-});*/
 server.listen(3000);

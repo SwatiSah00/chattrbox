@@ -15,7 +15,7 @@ ws.on('connection', function(socket) {
     });
 
   } else {
-    socket.send("*** Topic is '" + currentTopic + "'");
+    socket.send('*** Topic is "' + currentTopic + '"');
     messages.forEach(function(msg) {
       socket.send(msg);
     });
@@ -26,12 +26,12 @@ ws.on('connection', function(socket) {
     if(data.indexOf(substring) == 0){
       currentTopic = data.slice(6);
       ws.clients.forEach(function(clientSocket) {
-        clientSocket.send("*** Topic has changed to '" + currentTopic + "'")
+        clientSocket.send('*** Topic has changed to "' + currentTopic + '"');
       });
     } else {
       messages.push(data);
       ws.clients.forEach(function(clientSocket) {
-        clientSocket.send(data)
+        clientSocket.send(data);
       });
 
     }
