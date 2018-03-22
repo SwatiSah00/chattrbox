@@ -5,6 +5,8 @@ module.exports = {
     "extends": "eslint:recommended",
     "rules": {
         "no-console" : "off",
+        "no-undef" : "off",
+        "no-unused-vars" : "off",
         "indent": [
             "error",
             2
